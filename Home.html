@@ -154,15 +154,15 @@
               <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-              <a href="#">Kategori 1</a>
-              <a href="#">Kategori 2</a>
-              <a href="#">Kategori 3</a>
+              <a href="products.html">Kategori 1</a>
+              <a href="products.html">Kategori 2</a>
+              <a href="products.html">Kategori 3</a>
             </div>
           </div> 
         
         <a href="#kundkorg">Kundkorg</a>
         <input type="text" placeholder="Sök produkt">
-        <a onclick="myFunction()" class="icon">
+        <a onclick="openNav()" class="icon">
           <i class="fa fa-bars"></i>
         </a>
     </div>
@@ -170,7 +170,7 @@
   
 
     <script>
-        function myFunction() {
+        function openNav() {
           var x = document.getElementById("myNavBar");
           if (x.className === "navBar") {
             x.className += " responsive";
