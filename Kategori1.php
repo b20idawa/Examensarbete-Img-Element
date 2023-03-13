@@ -13,16 +13,16 @@
 <body>
     <div class="navBar" id="myNavBar">
         <div class="navBarLeft">
-          <a href="Home.php" class="active">E-handel</a>
-          <a href="Home.php">Hem</a>
+          <a href="Home.html" class="active">E-handel</a>
+          <a href="Home.html">Hem</a>
           <div class="dropdown">
             <button class="dropbtn">Produkter 
               <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-              <a href="products.php">Kategori 1</a>
-              <a href="products.php">Kategori 2</a>
-              <a href="products.php">Kategori 3</a>
+              <a href="Kategori1.php">Kategori 1</a>
+              <a href="Kategori2.php">Kategori 2</a>
+              <a href="Kategori3.php">Kategori 3</a>
             </div>
           </div> 
         </div>
@@ -49,7 +49,7 @@
           die("Connection failed: " . $conn->connect_error);
         }
       
-        $sql = "SELECT articlenr, name, price FROM Products";
+        $sql = "SELECT articlenr, name, price FROM Product1";
         $result = $conn->query($sql);
     
         if ($result->num_rows > 0) {
