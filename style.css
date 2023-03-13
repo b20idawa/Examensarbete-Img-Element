@@ -25,7 +25,7 @@ body {
   }
   
   .navBar a.active {
-    background-color: #6a9b94;
+    background-color: #E56EB1;
     color: white;
   }
   
@@ -160,7 +160,7 @@ body {
     outline: 0;
     padding: 12px;
     color: white;
-    background-color: #6a9b94;
+    background-color: #E56EB1;
     text-align: center;
     cursor: pointer;
     width: 100%;
@@ -177,6 +177,10 @@ body {
     display: grid;
     gap: 1rem;
     margin-top: 5%;
+  }
+
+  .articlenr {
+    font-size: 0.7rem;
   }
 
   @media (min-width: 600px) {
