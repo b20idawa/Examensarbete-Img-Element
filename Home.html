@@ -8,33 +8,35 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/d39f9ee5aa.js" crossorigin="anonymous"></script>
-
     <script type="text/JavaScript" src="script.js"></script>
 </head>
 <body>
-  <div class="navBar" id="myNavBar">
-    <div class="navBarLeft">
-      <a href="Home.html" class="active">E-handel</a>
-      <a href="Home.html">Hem</a>
-      <div class="dropdown">
-        <button class="dropbtn">Produkter 
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-          <a href="Kategori1.php">Kategori 1</a>
-          <a href="Kategori2.php">Kategori 2</a>
-          <a href="Kategori3.php">Kategori 3</a>
+    <div class="navBar" id="myNavBar">
+        <div class="navBarLeft">
+          <a href="Home.html" class="active">E-handel</a>
+          <a href="Home.html">Hem</a>
+          <div class="dropdown">
+            <button class="dropbtn">Produkter 
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a href="Kategori1.php">Kategori 1</a>
+              <a href="Kategori2.php">Kategori 2</a>
+              <a href="Kategori3.php">Kategori 3</a>
+            </div>
+          </div> 
         </div>
-      </div> 
-    </div>
-    <div class="navBarRight">
-      <a href="#kundkorg"><i class='fas fa-shopping-cart'></i></a>
-      <input type="text" placeholder="Sök produkt">
-      <a onclick="openNav()" class="icon">
-        <i class="fa fa-bars"></i>
-      </a>
-    </div> 
-  </div>
+        <div class="navBarRight">
+          <a class="test" href="#kundkorg"><i class='fas fa-shopping-cart'></i></a>
+          <form action="search.php" method="POST">
+            <input type="text" name="word" placeholder="Sök produkt" />
+            <input type="hidden" name="search"/>
+          </form>
+          <a onclick="openNav()" class="icon">
+            <i class="fa fa-bars"></i>
+          </a>
+        </div> 
+      </div>
     
 </body>
 </html>

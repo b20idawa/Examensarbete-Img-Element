@@ -28,7 +28,10 @@
         </div>
         <div class="navBarRight">
           <a class="test" href="#kundkorg"><i class='fas fa-shopping-cart'></i></a>
-          <input type="text" placeholder="Sök produkt">
+          <form action="search.php" method="POST">
+            <input type="text" name="word" placeholder="Sök produkt" />
+            <input type="hidden" name="search"/>
+          </form>
           <a onclick="openNav()" class="icon">
             <i class="fa fa-bars"></i>
           </a>
