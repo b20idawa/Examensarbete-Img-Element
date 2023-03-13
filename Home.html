@@ -12,26 +12,29 @@
     <script type="text/JavaScript" src="script.js"></script>
 </head>
 <body>
-    <div class="navBar" id="myNavBar">
-        <a href="#start" class="active">E-handel</a>
-        <a href="#hem">Hem</a>
-        <div class="dropdown">
-            <button class="dropbtn">Produkter 
-              <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-              <a href="products.html">Kategori 1</a>
-              <a href="products.html">Kategori 2</a>
-              <a href="products.html">Kategori 3</a>
-            </div>
-          </div> 
-        
-        <a href="#kundkorg">Kundkorg <i class='fas fa-shopping-cart'></i></a>
-        <input type="text" placeholder="Sök produkt">
-        <a onclick="openNav()" class="icon">
-          <i class="fa fa-bars"></i>
-        </a>
+  <div class="navBar" id="myNavBar">
+    <div class="navBarLeft">
+      <a href="Home.html" class="active">E-handel</a>
+      <a href="Home.html">Hem</a>
+      <div class="dropdown">
+        <button class="dropbtn">Produkter 
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="products.php">Kategori 1</a>
+          <a href="products.php">Kategori 2</a>
+          <a href="products.php">Kategori 3</a>
+        </div>
+      </div> 
     </div>
+    <div class="navBarRight">
+      <a href="#kundkorg"><i class='fas fa-shopping-cart'></i></a>
+      <input type="text" placeholder="Sök produkt">
+      <a onclick="openNav()" class="icon">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div> 
+  </div>
     
 </body>
 </html>
