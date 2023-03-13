@@ -49,7 +49,7 @@
           die("Connection failed: " . $conn->connect_error);
         }
       
-        $sql = "SELECT articlenr, name, price FROM Product1";
+        $sql = "SELECT articlenr, name, price FROM Products WHERE category=1";
         $result = $conn->query($sql);
     
         if ($result->num_rows > 0) {
