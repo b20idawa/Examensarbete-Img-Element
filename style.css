@@ -25,7 +25,7 @@ body {
   }
   
   .navBar a.active {
-    background-color: #E56EB1;
+    background-color: #C52C83;
     color: white;
   }
   
@@ -160,7 +160,7 @@ body {
     outline: 0;
     padding: 12px;
     color: white;
-    background-color: #E56EB1;
+    background-color: #C52C83;
     text-align: center;
     cursor: pointer;
     width: 100%;
