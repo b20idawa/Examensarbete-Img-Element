@@ -73,7 +73,10 @@
                 }
                 else
                 {
-                    echo '<script>alert("Produkten finns redan i din varukorg")</script>';
+                    echo '<div class="alert">';
+                    echo '<span class="closebtn" onclick="this.parentElement.style.display=`none`;">&times;</span>';
+                    echo 'Produkten finns redan i din varukorg';
+                    echo '</div>';;
                 }
             }
             else
@@ -97,8 +100,11 @@
                     if($values["item_id"] == $_GET["id"])
                     {
                         unset($_SESSION["shopping_cart"][$keys]);
-                        echo '<script>alert("Produkten har tagits bort")</script>';
-                        echo '<script>window.location="shopping-cart.php"</script>';
+                        echo '<div class="alert">';
+                        echo '<span class="closebtn" onclick="this.parentElement.style.display=`none`;">&times;</span>';
+                        echo 'Produkten har tagits bort';
+                        echo '</div>';
+                        echo '<script>setTimeout(() => { window.location="shopping-cart.php"; }, 2000);</script>';
                     }
                 }
             }
