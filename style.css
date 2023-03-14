@@ -155,7 +155,7 @@ body {
     font-size: 22px;
   }
   
-  .card button {
+  #cardBtn {
     border: none;
     outline: 0;
     padding: 12px;
@@ -167,7 +167,7 @@ body {
     font-size: 18px;
   }
   
-  .card button:hover {
+  #cardBtn:hover {
     opacity: 0.7;
   }
 
@@ -189,4 +189,43 @@ body {
 
   @media (min-width: 900px) {
     .products { grid-template-columns: repeat(3, 1fr); }
+  }
+
+
+  #cart {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #cart td, #cart th {
+    border: 1px solid #ddd;
+    padding: 18px;
+    text-align: center;
+    font-size: 1.3rem;
+  }
+  
+  #cart tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #cart tr:hover {background-color: #ddd;}
+  
+  #cart th {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #C52C83;
+    color: white;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+  .divCart {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .cartHead {
+    text-align: center;
+    margin: 20px;
+    padding: 40px;
+    font-size: 2rem;
   }
