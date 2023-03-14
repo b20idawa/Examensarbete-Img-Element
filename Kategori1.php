@@ -63,8 +63,8 @@
             echo "<h2>".$row['name']."</h2>";
             echo "<p class='pris'>".$row['price']." kr</p>";
             echo "<p class='articlenr'>Artikelnummer: ".$row['articlenr']."</p>";
-            echo "<form action='shopping-cart.php' method='POST'>";
-            echo "<input type='text' name='quantity' value='1'</>";
+            echo "<form action='shopping-cart.php' method='POST' class='addCart'>";
+            echo "<input type='text' class='quantity' name='quantity' value='1'</>";
             echo "<input type='hidden' name='name' value='".$row['name']."'</>";
             echo "<input type='hidden' name='price' value='".$row['price']."'</>";
             echo "<input type='hidden' name='articlenr' value='".$row['articlenr']."'</>";
