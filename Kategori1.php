@@ -27,7 +27,7 @@
           </div> 
         </div>
         <div class="navBarRight">
-          <a class="test" href="#kundkorg"><i class='fas fa-shopping-cart'></i></a>
+          <a href="shopping-cart.php"><i class='fas fa-shopping-cart'></i></a>
           <form action="search.php" method="POST">
             <input type="text" name="word" placeholder="Sök produkt" />
             <input type="hidden" name="search"/>
@@ -59,11 +59,17 @@
           // output data of each row
           while($row = $result->fetch_assoc()) {
             echo "<div class='card'>";
-            echo "<img src='bild1.jpg' alt='' style='width:100%'>";
+            echo "<img src='bild.jpg' alt='' style='width:100%'>";
             echo "<h2>".$row['name']."</h2>";
             echo "<p class='pris'>".$row['price']." kr</p>";
             echo "<p class='articlenr'>Artikelnummer: ".$row['articlenr']."</p>";
-            echo "<button>Lägg i kundkorg <i class='fas fa-cart-plus'></i></button>";
+            echo "<form action='shopping-cart.php' method='POST'>";
+            echo "<input type='text' name='quantity' value='1'</>";
+            echo "<input type='hidden' name='name' value='".$row['name']."'</>";
+            echo "<input type='hidden' name='price' value='".$row['price']."'</>";
+            echo "<input type='hidden' name='articlenr' value='".$row['articlenr']."'</>";
+            echo "<input id='cardBtn' type='submit' name='add' value='Lägg i kundkorg'</>";
+            echo "</form>";
             echo "</div>";
           }
         } else {
