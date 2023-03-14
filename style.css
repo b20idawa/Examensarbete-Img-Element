@@ -229,3 +229,37 @@ body {
     padding: 40px;
     font-size: 2rem;
   }
+
+  .quantity {
+    width: 40%;
+    text-align: center;
+    font-size: 1.2rem;
+    border: 0.5px solid black;
+  }
+
+  .addCart{
+    display: flex;
+  }
+
+
+
+  .alert {
+    padding: 20px;
+    background-color: #D24D98;
+    color: white;
+  }
+  
+  .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .closebtn:hover {
+    color: black;
+  }
