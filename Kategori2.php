@@ -13,7 +13,7 @@
 <body>
     <div class="navBar" id="myNavBar">
         <div class="navBarLeft">
-          <a href="Home.html" class="active">E-handel</a>
+          <a href="Home.html" class="home active">E-handel</a>
           <a href="Home.html">Hem</a>
           <div class="dropdown">
             <button class="dropbtn">Produkter 
@@ -27,7 +27,7 @@
           </div> 
         </div>
         <div class="navBarRight">
-          <a href="shopping-cart.php"><i class='fas fa-shopping-cart'></i></a>
+          <a href="shopping-cart.php">Kundvagn <i class='fas fa-shopping-cart'></i></a>
           <form action="search.php" method="POST">
             <input type="text" name="word" placeholder="Sök produkt" />
             <input type="hidden" name="search"/>
