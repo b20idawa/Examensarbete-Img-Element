@@ -34,7 +34,12 @@ body {
   }
   
   @media screen and (max-width: 650px) {
-    .navBar a:not(:first-child) {display: none;}
+    .navBar a {
+      display: none;
+    }
+    .home{
+      display: block !important;
+    }
     .navBar a.icon {
       float: right;
       display: block;
@@ -199,10 +204,10 @@ body {
   }
   
   #cart td, #cart th {
-    border: 1px solid #ddd;
     padding: 18px;
     text-align: center;
     font-size: 1.3rem;
+    text-transform: capitalize;
   }
   
   #cart tr:nth-child(even){background-color: #f2f2f2;}
@@ -263,3 +268,93 @@ body {
   .closebtn:hover {
     color: black;
   }
+  table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+  }
+  
+  table tr {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: .35em;
+  }
+  
+  table th,
+  table td {
+    padding: .625em;
+    text-align: center;
+  }
+  
+  table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  
+  @media screen and (max-width: 900px) {
+    table {
+      border: 0;
+    }
+  
+    table caption {
+      font-size: 1.3em;
+    }
+    
+    table thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    
+    table tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: .625em;
+    }
+    
+    table td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: .8em;
+      text-align: right;
+      text-transform: capitalize;
+    }
+    
+    table td::before {
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: capitalize;
+      color: white;
+      background-color: #C52C83;
+      width: 150px;
+      height: 43px;
+      margin-top: -18px;
+      margin-left: -18px;
+      padding-top: 18px;
+    }
+  
+    
+    table td:last-child {
+      border-bottom: 0;
+    }
+
+    .emptyColumn{
+      height: 20px;
+    }
+  }
+  

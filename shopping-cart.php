@@ -13,7 +13,7 @@
 <body>
     <div class="navBar" id="myNavBar">
         <div class="navBarLeft">
-          <a href="Home.html" class="active">E-handel</a>
+          <a href="Home.html" class="home active">E-handel</a>
           <a href="Home.html">Hem</a>
           <div class="dropdown">
             <button class="dropbtn">Produkter 
@@ -27,7 +27,7 @@
           </div> 
         </div>
         <div class="navBarRight">
-          <a href="shopping-cart.php"><i class='fas fa-shopping-cart'></i></a>
+          <a href="shopping-cart.php">Kundvagn <i class='fas fa-shopping-cart'></i></a>
           <form action="search.php" method="POST">
             <input type="text" name="word" placeholder="Sök produkt" />
             <input type="hidden" name="search"/>
@@ -114,16 +114,25 @@
 
 
 
+
+
+  
+
     <h2 class="cartHead">Din kundkorg</h2>
     <div class="divCart">
         <table id="cart">
-            <tr>
-                <th width="40%">Produkt</th>
-                <th width="10%">Antal</th>
-                <th width="20%">Pris</th>
-                <th width="15%">Totalt</th>
-                <th width="15%"></th>
-            </tr>
+            <thead>
+
+                <tr>
+                    <th scope="col">Produkt</th>
+                    <th scope="col">Antal</th>
+                    <th scope="col">Pris</th>
+                    <th scope="col">Totalt</th>
+                    <th scope="col"></th>
+                </tr>
+            
+            </thead>
+            <tbody>
             <?php
             if(!empty($_SESSION["shopping_cart"]))
             {
@@ -131,22 +140,25 @@
                 foreach($_SESSION["shopping_cart"] as $keys => $values)
                 {
             ?>
+           
             <tr>
-                <td><?php echo $values["item_name"]; ?></td>
-                <td><?php echo $values["item_quantity"]; ?></td>
-                <td><?php echo $values["item_price"]; ?> kr</td>
-                <td><?php echo number_format($values["item_quantity"] * $values["item_price"], 2);?> kr</td>
+                <td data-label="Produkt"><?php echo $values["item_name"]; ?></td>
+                <td data-label="Antal"><?php echo $values["item_quantity"]; ?></td>
+                <td data-label="Pris"><?php echo $values["item_price"]; ?> kr</td>
+                <td data-label="Totalt"><?php echo number_format($values["item_quantity"] * $values["item_price"], 2);?> kr</td>
                 <td><a style="color: black;" href="shopping-cart.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span class="text-danger"><i class="fa-regular fa-trash-can" style="font-size: 1.5rem;"></i></span></a></td>
             </tr>
+            
             <?php
                     $total = $total + ($values["item_quantity"] * $values["item_price"]);
                 }
             ?>
             <tr>
-                <td colspan="3" align="right">Totalt</td>
-                <td align="right"><?php echo number_format($total, 2); ?> kr</td>
-                <td></td>
+                <td data-label="Totalt" colspan="3" align="right">Totalt</td>
+                <td data-label="" align="right"><?php echo number_format($total, 2); ?> kr</td>
+                <td data-label="" class="emptyColumn"></td>
             </tr>
+           </tbody>
             <?php
             }
             ?>
