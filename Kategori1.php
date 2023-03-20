@@ -52,14 +52,13 @@
           die("Connection failed: " . $conn->connect_error);
         }
       
-        $sql = "SELECT articlenr, name, price FROM Products WHERE category=1";
+        $sql = "SELECT articlenr, name, price, picture FROM Products WHERE category=1";
         $result = $conn->query($sql);
-    
         if ($result->num_rows > 0) {
           // output data of each row
           while($row = $result->fetch_assoc()) {
             echo "<div class='card'>";
-            echo "<img src='bild.jpg' alt='' style='width:100%'>";
+            echo "<img src='".$row['picture'].".jpg' alt='' style='width:100%'>";
             echo "<h2>".$row['name']."</h2>";
             echo "<p class='pris'>".$row['price']." kr</p>";
             echo "<p class='articlenr'>Artikelnummer: ".$row['articlenr']."</p>";
