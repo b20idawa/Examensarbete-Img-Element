@@ -16,7 +16,9 @@
         <label for="price">Pris: </label><br>
         <input type="text" id="price" name="price" Placeholder="Pris"><br>
         <label for="category">Kategori: </label><br>
-        <input type="text" id="category" name="category" Placeholder="Kategori"><br><br>
+        <input type="text" id="category" name="category" Placeholder="Kategori"><br>
+        <label for="category">Bild: </label><br>
+        <input type="text" id="picture" name="picture" Placeholder="Bild"><br><br>
         <input id="submit" type="submit" value="Skicka">
     </form>
 
@@ -36,18 +38,19 @@
         $name = $_REQUEST['name'];
         $price =  $_REQUEST['price'];
         $category = $_REQUEST['category'];
+        $picture = $_REQUEST['picture'];
 
         
         // Performing insert query execution
         // here our table name is college
         $sql = "INSERT INTO Products  VALUES ('$articlenr',
-            '$name','$price','$category')";
+            '$name','$price','$category', '$picture')";
         
         if(mysqli_query($conn, $sql)){
             echo "<h3>Data stored in database successfully</h3>";
 
             echo nl2br("\n$articlenr\n $name\n "
-                . "$price\n $category");
+                . "$price\n $category\n $picture");
         } else{
             echo "ERROR: Hush! Sorry $sql. "
                 . mysqli_error($conn);
