@@ -70,7 +70,7 @@
                 // output data of each row
                 while($row = $result->fetch_assoc()) {
                     echo "<div class='card'>";
-                    echo "<img src='bild.jpg' alt='' style='width:100%'>";
+                    echo "<img src='bilder/".$row['picture'].".jpg' alt='' style='width:100%'>";
                     echo "<h2>".$row['name']."</h2>";
                     echo "<p class='pris'>".$row['price']." kr</p>";
                     echo "<p class='articlenr'>Artikelnummer: ".$row['articlenr']."</p>";
