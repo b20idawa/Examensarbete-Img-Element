@@ -5,4 +5,11 @@ function openNav() {
     } else {
       x.className = "navBar";
     }
-  }
+}
+
+
+function closeModal(){
+  var modal = document.getElementById("productModal");
+  modal.style.display = "none";
+}
+

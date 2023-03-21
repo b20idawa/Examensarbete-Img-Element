@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/d39f9ee5aa.js" crossorigin="anonymous"></script>
-    <script type="text/JavaScript" src="script.js"></script>
+    
 </head>
 <body>
     <div class="navBar" id="myNavBar">
@@ -52,7 +52,7 @@
           die("Connection failed: " . $conn->connect_error);
         }
       
-        $sql = "SELECT articlenr, name, price, picture FROM Products WHERE category=1";
+        $sql = "SELECT * FROM Products WHERE category=1";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
           // output data of each row
@@ -62,6 +62,10 @@
             echo "<h2>".$row['name']."</h2>";
             echo "<p class='pris'>".$row['price']." kr</p>";
             echo "<p class='articlenr'>Artikelnummer: ".$row['articlenr']."</p>";
+            echo "<form action='Kategori1.php' method='POST'>";
+            echo "<input type='hidden' name='articlenr' value='".$row['articlenr']."'</>";
+            echo "<input type='submit' name='text' value='Beskrivning'</>";
+            echo "</form>";
             echo "<form action='shopping-cart.php' method='POST' class='addCart'>";
             echo "<input type='text' class='quantity' name='quantity' value='1'</>";
             echo "<input type='hidden' name='name' value='".$row['name']."'</>";
@@ -74,11 +78,32 @@
         } else {
           echo "0 results";
         }
-        $conn->close();
+        if(isset($_POST["text"])){
+
+          $article = $_POST['articlenr'];
+          $stmt = "select * from Products where ".$article."=articlenr";
+          
+          $result = $conn->query($stmt);
+  
+          if ($result->num_rows > 0) {
+            echo "<div id='productModal' class='modal'>";
+            echo "<div class='modal-content'>";
+            echo "<button onclick='closeModal();' class='close'>&times;</button>";
+          // output data of each row
+          while($row = $result->fetch_assoc()) {
+            echo "<p>".$row['description']."</p>"; 
+          }
+          } else {
+          echo "0 results";
+          }
+          echo "</div>";
+          echo "</div>";
 
 
-        
+        }
+        $conn->close(); 
      ?>  
     </div>
+    <script type="text/JavaScript" src="script.js"></script>
 </body>
-</html>
+</html>   
