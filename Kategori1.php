@@ -62,9 +62,10 @@
             echo "<h2>".$row['name']."</h2>";
             echo "<p class='pris'>".$row['price']." kr</p>";
             echo "<p class='articlenr'>Artikelnummer: ".$row['articlenr']."</p>";
-            echo "<form action='Kategori1.php' method='POST'>";
+            echo "<form action='Kategori1.php' method='POST' style='display: flex; justify-content: center; margin: 20px; font-size: 1.3rem;'>";
             echo "<input type='hidden' name='articlenr' value='".$row['articlenr']."'</>";
-            echo "<input type='submit' name='text' value='Beskrivning'</>";
+            echo "<input type='submit' name='text' value='Beskrivning ' style='border: none; background: none; color: grey; cursor: pointer;'</>";
+            echo "<i class='fa-solid fa-circle-info'></i>";
             echo "</form>";
             echo "<form action='shopping-cart.php' method='POST' class='addCart'>";
             echo "<input type='text' class='quantity' name='quantity' value='1'</>";
@@ -82,7 +83,7 @@
 
           $article = $_POST['articlenr'];
           $stmt = "select * from Products where ".$article."=articlenr";
-          
+
           $result = $conn->query($stmt);
   
           if ($result->num_rows > 0) {
