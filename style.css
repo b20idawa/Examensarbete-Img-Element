@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&family=Merriweather+Sans&display=swap');
+:root {
+  --primary: #405846;
+  --secondary: #5F7D66;
+}
 body {
     margin: 0;
     font-family: 'Comfortaa', cursive;
@@ -25,7 +29,7 @@ body {
   }
   
   .navBar a.active {
-    background-color: #405846;
+    background-color: var(--primary);
     color: white;
   }
   
@@ -165,7 +169,7 @@ body {
     outline: 0;
     padding: 12px;
     color: white;
-    background-color: #405846;
+    background-color: var(--primary);
     text-align: center;
     cursor: pointer;
     width: 100%;
@@ -217,7 +221,7 @@ body {
   #cart th {
     padding-top: 20px;
     padding-bottom: 20px;
-    background-color: #405846;
+    background-color: var(--primary);
     color: white;
     text-align: center;
     font-size: 1.2rem;
@@ -250,7 +254,7 @@ body {
 
   .alert {
     padding: 20px;
-    background-color: #5F7D66;
+    background-color: var(--secondary);
     color: white;
   }
   
@@ -340,7 +344,7 @@ body {
       font-weight: bold;
       text-transform: capitalize;
       color: white;
-      background-color: #C52C83;
+      background-color: var(--primary);
       width: 150px;
       height: 43px;
       margin-top: -18px;
@@ -360,7 +364,9 @@ body {
 
 
 
-
+h2 {
+  text-transform: capitalize;
+}
 
   
 .modal {
@@ -381,7 +387,7 @@ body {
   background-color: white;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
-  border: 40px solid #405846;
+  border: 40px solid var(--primary);
   width: 40%; /* Could be more or less, depending on screen size */
   padding-bottom: 100px;
 }
