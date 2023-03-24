@@ -62,7 +62,7 @@
             echo "<h2>".$row['name']."</h2>";
             echo "<p class='pris'>".$row['price']." kr</p>";
             echo "<p class='articlenr'>Artikelnummer: ".$row['articlenr']."</p>";
-            echo "<form action='Kategori1.php' method='POST' style='display: flex; justify-content: center; margin: 20px; font-size: 1.3rem;'>";
+            echo "<form action='Kategori2.php' method='POST' style='display: flex; justify-content: center; margin: 20px; font-size: 1.3rem;'>";
             echo "<input type='hidden' name='articlenr' value='".$row['articlenr']."'</>";
             echo "<input type='submit' name='text' value='Beskrivning ' style='border: none; background: none; color: grey; cursor: pointer;'</>";
             echo "<i class='fa-solid fa-circle-info'></i>";
@@ -79,6 +79,27 @@
         } else {
           echo "0 results";
         }
+        if(isset($_POST["text"])){
+
+            $article = $_POST['articlenr'];
+            $stmt = "select * from Products where ".$article."=articlenr";
+  
+            $result = $conn->query($stmt);
+    
+            if ($result->num_rows > 0) {
+              echo "<div id='productModal' class='modal'>";
+              echo "<div class='modal-content'>";
+              echo "<button onclick='closeModal();' class='close'>&times;</button>";
+            // output data of each row
+            while($row = $result->fetch_assoc()) {
+              echo "<p>".$row['description']."</p>"; 
+            }
+            } else {
+            echo "0 results";
+            }
+            echo "</div>";
+            echo "</div>";
+          }
         $conn->close();
      ?>  
     </div>
