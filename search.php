@@ -51,43 +51,97 @@
             echo "fel";
             die("Connection failed: " . $conn->connect_error);
             }
-        
-            
-
-
-
             
             if(isset($_POST['search']))
             {
                 
                 $search = $_POST['word'];
                 $stmt = "select * from Products where name like '%$search%'";
+        
+                $result = $conn->query($stmt);
+                if ($result->num_rows > 0) {
+                // output data of each row
+                    while($row = $result->fetch_assoc()) {
+                        echo "<div class='card'>";
+                        echo "<img src='bilder/".$row['picture'].".jpg' alt='' style='width:100%'>";
+                        echo "<h2>".$row['name']."</h2>";
+                        echo "<p class='pris'>".$row['price']." kr</p>";
+                        echo "<p class='articlenr'>Artikelnummer: ".$row['articlenr']."</p>";
+                        echo "<form action='' method='POST' style='display: flex; justify-content: center; margin: 20px; font-size: 1.3rem;'>";
+                        echo "<input type='hidden' name='articlenr' value='".$row['articlenr']."'</>";
+                        echo "<input type='hidden' name='searchValue' value='".$search."'</>";
+                        echo "<input type='submit' name='text' value='Beskrivning ' style='border: none; background: none; color: grey; cursor: pointer;'</>";
+                        echo "<i class='fa-solid fa-circle-info'></i>";
+                        echo "</form>";
+                        echo "<form action='shopping-cart.php' method='POST' class='addCart'>";
+                        echo "<input type='text' class='quantity' name='quantity' value='1'</>";
+                        echo "<input type='hidden' name='name' value='".$row['name']."'</>";
+                        echo "<input type='hidden' name='price' value='".$row['price']."'</>";
+                        echo "<input type='hidden' name='articlenr' value='".$row['articlenr']."'</>";
+                        echo "<input id='cardBtn' type='submit' name='add' value='Lägg i kundkorg'</>";
+                        echo "</form>";
+                        echo "</div>";
+                    }
+                } else {
+                echo "0 results";
+                }
+                
+                $conn->close();       
+            }
+           
+            if(isset($_POST["text"])){
+                
+                $article = $_POST['articlenr'];
+                $searchValue = $_POST['searchValue'];
 
+                $stmt = "select * from Products where name like '%$searchValue%'";
+        
+                $result = $conn->query($stmt);
+                if ($result->num_rows > 0) {
+                // output data of each row
+                    while($row = $result->fetch_assoc()) {
+                        echo "<div class='card'>";
+                        echo "<img src='bilder/".$row['picture'].".jpg' alt='' style='width:100%'>";
+                        echo "<h2>".$row['name']."</h2>";
+                        echo "<p class='pris'>".$row['price']." kr</p>";
+                        echo "<p class='articlenr'>Artikelnummer: ".$row['articlenr']."</p>";
+                        echo "<form action='' method='POST' style='display: flex; justify-content: center; margin: 20px; font-size: 1.3rem;'>";
+                        echo "<input type='hidden' name='articlenr' value='".$row['articlenr']."'</>";
+                        echo "<input type='hidden' name='searchValue' value='".$search."'</>";
+                        echo "<input type='submit' name='text' value='Beskrivning ' style='border: none; background: none; color: grey; cursor: pointer;'</>";
+                        echo "<i class='fa-solid fa-circle-info'></i>";
+                        echo "</form>";
+                        echo "<form action='shopping-cart.php' method='POST' class='addCart'>";
+                        echo "<input type='text' class='quantity' name='quantity' value='1'</>";
+                        echo "<input type='hidden' name='name' value='".$row['name']."'</>";
+                        echo "<input type='hidden' name='price' value='".$row['price']."'</>";
+                        echo "<input type='hidden' name='articlenr' value='".$row['articlenr']."'</>";
+                        echo "<input id='cardBtn' type='submit' name='add' value='Lägg i kundkorg'</>";
+                        echo "</form>";
+                        echo "</div>";
+                    }
+                } else {
+                echo "0 results";
+                }
 
+                $stmt = "select * from Products where ".$article."=articlenr";
+      
                 $result = $conn->query($stmt);
         
                 if ($result->num_rows > 0) {
+                  echo "<div id='productModal' class='modal'>";
+                  echo "<div class='modal-content'>";
+                  echo "<button onclick='closeModal();' class='close'>&times;</button>";
                 // output data of each row
                 while($row = $result->fetch_assoc()) {
-                    echo "<div class='card'>";
-                    echo "<img src='bilder/".$row['picture'].".jpg' alt='' style='width:100%'>";
-                    echo "<h2>".$row['name']."</h2>";
-                    echo "<p class='pris'>".$row['price']." kr</p>";
-                    echo "<p class='articlenr'>Artikelnummer: ".$row['articlenr']."</p>";
-                    echo "<form action='shopping-cart.php' method='POST' class='addCart'>";
-                    echo "<input type='text' class='quantity' name='quantity' value='1'</>";
-                    echo "<input type='hidden' name='name' value='".$row['name']."'</>";
-                    echo "<input type='hidden' name='price' value='".$row['price']."'</>";
-                    echo "<input type='hidden' name='articlenr' value='".$row['articlenr']."'</>";
-                    echo "<input id='cardBtn' type='submit' name='add' value='Lägg i kundkorg'</>";
-                    echo "</form>";
-                    echo "</div>";
+                  echo "<p>".$row['description']."</p>"; 
                 }
                 } else {
                 echo "0 results";
                 }
-                $conn->close();       
-            }
+                echo "</div>";
+                echo "</div>";
+              }
             
         ?> 
         </div> 
