@@ -27,9 +27,9 @@
         </div>
         <div class="navBarRight">
           <a href="shopping-cart.php">Kundvagn <i class='fas fa-shopping-cart'></i></a>
-          <form action="search.php" method="POST">
-            <input type="text" name="word" placeholder="Sök produkt" />
-            <input type="hidden" name="search"/>
+          <form action="search.php" method="POST" class="searchForm">
+            <input type="text" name="word" placeholder="Sök produkt" id="searchBox"/>
+            <input type="submit" name="search" id="searchBtn" value="Sök"/>
           </form>
           <a onclick="openNav()" class="icon">
             <i class="fa fa-bars"></i>
