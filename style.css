@@ -229,7 +229,11 @@ body {
   }
 
   @media (min-width: 900px) {
-    .products { grid-template-columns: repeat(3, 1fr); }
+    .products { grid-template-columns: repeat(2, 1fr); }
+    .card{
+      max-width: 1000px;
+      margin: 5%;
+    }
   }
 
 
