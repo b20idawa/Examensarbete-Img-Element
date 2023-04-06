@@ -55,7 +55,17 @@
             {
                 
                 $search = $_POST['word'];
-                $stmt = "select * from Products where name like '%$search%'";
+                $stmt = "SELECT * FROM Products WHERE name LIKE '%$search%'";
+
+                $count = "SELECT COUNT(articlenr) AS 'hitCount' FROM Products WHERE name LIKE '%$search%'";
+          
+                $countResult = $conn->query($count);
+                $hitResult = $countResult->fetch_assoc();
+                echo "<p>";
+                echo $hitResult['hitCount']." träffar.";
+                echo "</p>";
+               
+                define('XOAUTH_USERNAME', $hitResult['hitCount']);
         
                 $result = $conn->query($stmt);
                 if ($result->num_rows > 0) {
@@ -144,5 +154,8 @@
             
         ?> 
         </div> 
+        <script>
+        localStorage.setItem('hits', '<?=XOAUTH_USERNAME?>'); 
+        </script>
 </body>
 </html>
