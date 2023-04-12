@@ -82,7 +82,7 @@
             else
             {
                 $item_array = array(
-                    'item_id'			=>	$_GET["id"],
+                    'item_id'			=>	$_POST["articlenr"],
                     'item_name'			=>	$_POST["name"],
                     'item_price'		=>	$_POST["price"],
                     'item_quantity'		=>	$_POST["quantity"]
