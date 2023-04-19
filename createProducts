@@ -1,0 +1,70 @@
+// ==UserScript==
+// @name     Skapa produkter databas
+// @version  1
+// @grant    none
+// @require https://raw.githubusercontent.com/HGustavs/Random-Number-Generator/master/seededrandom.js
+// @require https://raw.githubusercontent.com/HGustavs/ContextFreeLib/master/js/contextfreegrammar.js
+// ==/UserScript==
+
+
+// a variable that store seed
+let seedStore;
+
+// a variable that set the numbers of posts
+var postsQuantity = 500;
+
+function getName() {
+    document.getElementById('name').value='';
+    const random = noun[Math.floor(Math.random() * noun.length)];
+    document.getElementById('name').value+=random;  
+}
+
+function getDescription(){
+  for(var i=0;i<1;i++){
+    sentence1=generate_sentence(0.5,0.5,0.5,0.5,1,1,1,1,1,1,1);
+    sentence2=generate_sentence(0.5,0.5,0.5,0.5,1,1,1,1,1,1,1);
+		sentence3=generate_sentence(0.5,0.5,0.5,0.5,1,1,1,1,1,1,1);
+    document.getElementById('description').value+=sentence1+sentence2+sentence3;
+  }
+}
+
+function getArticleNr() {
+  document.getElementById("articlenr").value = Math.floor(Math.random()*999999 + 100000); 
+}
+
+function getData() {
+  document.getElementById("price").value = Math.floor(Math.random()*1099 + 199);
+  document.getElementById("category").value = Math.floor(Math.random()*3 + 1);
+  document.getElementById("picture").value = Math.floor(Math.random()*100 + 1); 
+}
+
+// a variable that count and get seedStore
+var seedCount = window.localStorage.getItem("seedStore");
+seedStore = window.localStorage.getItem("seedStore");
+
+Math.setSeed(seedCount*50);
+ 
+
+// a if statement that checks postsQuantity and generates the posts
+if(seedCount < postsQuantity){
+  getArticleNr();
+  getName();
+  getData();
+  getDescription();
+  document.getElementById("submit").click();
+  
+  // increase the seedCounter
+  seedCount++;
+  window.localStorage.setItem("seedStore", seedCount);
+
+  
+ 
+  // set a timeout to 500ms and move directly to the url
+  setTimeout(() => { location.href="http://localhost/Examensarbete/Form.html"; }, 2000);
+}
+
+// else statement that reset seedStore
+else{
+  window.localStorage.setItem("seedStore", 0);
+ 
+}
