@@ -1,0 +1,174 @@
+// ==UserScript==
+// @name     Search Examensarbete img element
+// @version  1
+// @grant    none
+// @include  http://localhost/examensarbete/search.php
+// @include  http://localhost/examensarbete/Kategori1.php
+// @require https://raw.githubusercontent.com/HGustavs/Random-Number-Generator/master/seededrandom.js
+// @require  http://raw.githubusercontent.com/eligrey/FileSaver.js/master/src/FileSaver.js
+// ==/UserScript==
+
+
+var startTime;
+var endTime;
+var searchValue;
+
+var clickEvent = new MouseEvent('click', {
+  view: window,
+  bubbles: true,
+  cancelable: true
+});
+
+//function that random a letter
+function randomLetter(){
+  
+  const alphabet = "abcdefghijklmnopqrstuvwxyz";
+	const randomCharacter = alphabet[Math.floor(Math.random() * alphabet.length)];
+
+	
+	document.getElementById("searchBox").value += randomCharacter;
+  searchValue = '\n' + document.getElementById('searchBox').value;
+  
+  //store the random letter in localstorage
+  window.localStorage.setItem("random", randomCharacter);
+
+  if (window.localStorage.getItem('letter') == null){
+    window.localStorage.setItem('letter','[]');
+  	
+  }
+
+  //parse the random letter to a JSON string
+  data = JSON.parse(window.localStorage.getItem('letter'));
+  data.push(searchValue);
+
+  window.localStorage.setItem('letter', JSON.stringify(data));
+  
+}
+
+//function that press the search btn and start the time
+function keyPress() {
+  document.getElementById("searchBtn").dispatchEvent (clickEvent);
+  startTime = Date.now();
+  
+  //store the startTime in localstorage
+  window.localStorage.setItem("startTime", startTime);
+}
+
+//function that stop the time
+function setEndTime(){
+  endTime = Date.now();
+  
+  //store the endTime in localstorage
+  window.localStorage.setItem("endTime", endTime); 
+
+  
+}
+
+
+// a function that stores the time and calculate the delta time for one search
+function storeTime(){
+    var sTime =window.localStorage.getItem("startTime");
+    var eTime =window.localStorage.getItem("endTime");
+    var result = '\n'  + (eTime - sTime);
+
+
+    if (window.localStorage.getItem('time') == null){
+        	window.localStorage.setItem('time','[]');
+		}
+  
+  	// Store the delta time in localstorage for one search
+    data = JSON.parse(window.localStorage.getItem('time'));
+    data.push(result);
+
+    window.localStorage.setItem('time', JSON.stringify(data));
+}
+
+function storeHits() {
+  
+  	var hit = '\n'  + window.localStorage.getItem("hits");
+    
+
+
+    if (window.localStorage.getItem('hitResult') == null){
+        	window.localStorage.setItem('hitResult','[]');
+		}
+  
+  	// Store the delta time in localstorage for one search
+    data = JSON.parse(window.localStorage.getItem('hitResult'));
+    data.push(hit);
+
+    window.localStorage.setItem('hitResult', JSON.stringify(data));
+  
+}
+
+
+// a function the save the data from localstorage to a text-file
+function saveDynamicDataToFile() {  
+    var dataResult = JSON.parse(window.localStorage.getItem('letter'));
+    var timeResult = JSON.parse(window.localStorage.getItem('time'));
+  	var hitsResult = JSON.parse(window.localStorage.getItem('hitResult'));
+
+    var blob = new Blob(['Searchword:',dataResult,'\n\n\nTime:',timeResult, '\n\n\nHits:',hitsResult], { type: "text/plain;charset=utf-8" });
+    saveAs(blob, "ScriptResult.txt"); 
+}
+
+
+// a variable that store seed
+let seedStore;
+
+// a variable that set the numbers of searches
+var quantity = 500;
+
+
+// a variable that count and get seedStore
+var seedCount = window.localStorage.getItem("seedStore");
+seedStore = window.localStorage.getItem("seedStore");
+
+Math.setSeed(seedCount*50);
+ 
+
+
+// a if statement that checks quantity and generates the searches
+if(seedCount < quantity){
+  //check if the url is the kategori is the kategori1 page
+  if (window.location.href == "http://localhost/examensarbete/Kategori1.php"){
+     window.onload = (event) => {
+    		randomLetter();
+    		keyPress();
+     };
+    
+  }
+  
+  	//check if the url is the search page
+    if (window.location.href == "http://localhost/examensarbete/search.php"){
+        window.onload = (event) => {
+          	
+            setEndTime();
+          	storeTime();
+  					storeHits();
+          	
+            
+  
+            // increase the seedCounter
+            seedCount++;
+            window.localStorage.setItem("seedStore", seedCount);
+          
+          	window.location.href = "http://localhost/examensarbete/Kategori1.php";
+        };
+    } 
+    
+}
+
+// else statement that reset seedStore
+else{
+  	window.localStorage.setItem("seedStore", 0);
+}
+
+
+// a if statement that contains a alert that indicate that all searches is done and save the data to a text-file
+if(seedCount == quantity){
+  
+  	alert("Stop!")
+  	saveDynamicDataToFile(); 
+ 		window.localStorage.clear(); 	
+}
