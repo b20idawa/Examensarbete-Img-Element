@@ -1,4 +1,4 @@
-for n in {1..500}; 
+for n in {1..50}; 
 do
-    cp Detalj.jpg $n.jpg
+    cp blomma1.jpg $n.jpg
 done
